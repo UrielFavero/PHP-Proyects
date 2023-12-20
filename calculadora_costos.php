@@ -22,10 +22,7 @@
                     align-items: center;                    
                 }
 
-                h1 {
-                    text-align: start;
-                    color: #333;
-                }
+             
 
                 form {
                     background-color: #fff;
@@ -68,35 +65,33 @@
                 <body>
                     <?php
 
+                        //Se establecen valores por defecto y se icicializan las variables para el formulario                        
                         $horas = $materiales = $horat = "";
                         $hs = "HORAS DE TRABAJO"; $mt = "MATERIALES"; $ht = "VALOR POR HORA";
                         $gananciaErr = "";
 
+                        //Se verifica que los campos del formulario esten incompletos para proceder
+                        //En caso contrario se muestra que hay datos faltantes 
                         if($_SERVER["REQUEST_METHOD"]=="POST"){
-                            
                             if(empty($_POST["horat"])){
                                 $ht ="* FALTA COMPLETAR";
                             }else{
-                                $horat = $_POST["horat"];
-                            }
+                                $horat = $_POST["horat"];}
                             
                             if(empty($_POST["materiales"])){
                                 $mt ="* FALTA COMPLETAR";
                             }else{
-                                $materiales = $_POST["materiales"];
-                            }
+                                $materiales = $_POST["materiales"];}
                             
                             if(empty($_POST["horas"])){
                                 $hs ="* FALTA COMPLETAR";
                             }else{
-                                $horas = $_POST["horas"];
-                            }
+                                $horas = $_POST["horas"];}
                                 
                             if(empty($_POST["ganancia"])){
                                 $gananciaErr ="* Fata Completar";
                             }else{
-                                $ganancia = $_POST["ganancia"];
-                            }    
+                                $ganancia = $_POST["ganancia"];}    
                         }
                     ?>
 
@@ -120,17 +115,15 @@
                     
                         <?php
                             if($_SERVER["REQUEST_METHOD"]=="POST"){
-                            
+                                //Se verifica que todos los campos esten compelto antes de continuar
                                 if(empty($horat) || empty($materiales) || empty($horas) || empty($ganancia)){
-                                   
-                                    echo "<br>Todos los campos son obligatorios";                                
+                                echo "<br>Todos los campos son obligatorios";
                                 
                                 }else{
-                                    
+                                    //Se procede con la operacion para calcular los presupuestos
                                     $capitalHumano = $horat * $horas;
                                     $costos = $capitalHumano + $materiales;
                                     $valorAgragado = $costos * $ganancia;
-                                   
                                     echo "<h3>DEBERÍAS COBRAR:</h2><h1>$ " . number_format($valorAgragado, 2, '.') ."</h1>";
                                 }
                             }           

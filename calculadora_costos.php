@@ -120,7 +120,7 @@
                                 echo "<br>Todos los campos son obligatorios";
                                 
                                 }else{
-                                    //Se procede con la operacion para calcular los presupuestos
+                                    //Se procede con la operacion para calcular el resultado
                                     $capitalHumano = $horat * $horas;
                                     $costos = $capitalHumano + $materiales;
                                     $valorAgragado = $costos * $ganancia;
